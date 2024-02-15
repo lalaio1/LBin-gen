@@ -1,4 +1,4 @@
-```markdown
+
 # LBin Credit Card Generator
 
 ## Overview
@@ -6,7 +6,8 @@ LBin Credit Card Generator is a Python-based tool designed to generate credit an
 
 ## Quick Start
 
-### Windows:
+###Windows:
+
 1. **Install Git:**
    - Download and install Git from [Git for Windows](https://gitforwindows.org/).
    - During installation, choose the option to add Git to your system's PATH.
