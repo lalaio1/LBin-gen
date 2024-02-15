@@ -1,0 +1,7 @@
+Linux:
+python3 start.py 
+
+Windows:
+python start.py 
+
+(  se quiser saber como instala o python e so olhar no google :l  )
