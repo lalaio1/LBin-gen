@@ -41,6 +41,11 @@ LBin Credit Card Generator is a Python-based tool designed to generate credit an
    ```bash
    cd LBin-CC-generator-
    ```
+   
+7. **ADD perms:**
+ ```bash
+   chmod +x start.py
+   ```
 
 3. **Run the script:**
    ```bash
@@ -58,7 +63,7 @@ LBin Credit Card Generator is a Python-based tool designed to generate credit an
 
 3. **Install Python:**
    ```bash
-   pkg install python
+   pkg install python3
    ```
    
 4. **Install git:**
@@ -75,8 +80,13 @@ LBin Credit Card Generator is a Python-based tool designed to generate credit an
    ```bash
    cd LBin-CC-generator-
    ```
+   
+7. **ADD perms:**
+ ```bash
+   chmod +x start.py
+   ```
 
-7. **Run the script:**
+8. **Run the script:**
    ```bash
    python3 start.py
    ```
