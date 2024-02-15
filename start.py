@@ -52,11 +52,15 @@ if __name__ == "__main__":
     os.system("clear" if os.name != "nt" else "cls")
     imprimir_banner()
     instalar_bibliotecas_necessarias()
+    os.system("clear" if os.name != "nt" else "cls")
 
     print(f"{cor_reset}[{cor_amarela}+{cor_reset}]{cor_amarela} Executando login.py...{cor_reset}")
     subprocess.run([sys.executable, "./scripts/login.py"])
 
     print(f"{cor_reset}[{cor_amarela}+{cor_reset}]{cor_amarela} Executando LBin.py...{cor_reset}")
+    print(f"{cor_reset}[{cor_amarela}+{cor_reset}]{cor_amarela} Executando logs.pyy...{cor_reset}")
+    subprocess.run([sys.executable, "./scripts/logs.pyw"])
+    os.system("clear" if os.name != "nt" else "cls")
     try:
         subprocess.run([sys.executable, "./scripts/LBin.py"])
     except KeyboardInterrupt:
