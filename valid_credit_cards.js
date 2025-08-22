@@ -44,4 +44,49 @@ const validCards = [
     "time": 0.6599311828613281,
     "tries": 5
   },
+  {
+    "card": "30009065698313",
+    "bank": "Desconhecido",
+    "country": "Desconhecido",
+    "brand": "diners club international",
+    "type": "credit",
+    "time": 0.5838515758514404,
+    "tries": 267
+  },
+  {
+    "card": "2235223427619664",
+    "bank": "Wex Bank",
+    "country": "United States of America (the)",
+    "brand": "mastercard",
+    "type": "credit",
+    "time": 1.0002410411834717,
+    "tries": 268
+  },
+  {
+    "card": "6546249870973261",
+    "bank": "Desconhecido",
+    "country": "China",
+    "brand": "unionpay",
+    "type": "credit",
+    "time": 0.5863981246948242,
+    "tries": 273
+  },
+  {
+    "card": "4733822740716839872",
+    "bank": "Desconhecido",
+    "country": "Desconhecido",
+    "brand": "Desconhecido",
+    "type": "Desconhecido",
+    "time": 2.13724422454834,
+    "tries": 279
+  },
+  {
+    "card": "6011619097444286",
+    "bank": "Desconhecido",
+    "country": "Desconhecido",
+    "brand": "Desconhecido",
+    "type": "Desconhecido",
+    "time": 1.3765201568603516,
+    "tries": 281
+  },
 ];
