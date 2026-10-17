@@ -6,7 +6,6 @@ Kit de linha de comando e interface interativa para gerar números de cartão v�
 consultar BINs públicos, montar combinações de validade/CVV, validar lotes e exportar em 8 formatos.
 Feito para laboratório, sandbox de pagamento, QA e estudos de segurança — roda em **Windows, Linux e Termux/Android**.
 
-[![CI](https://github.com/lalaio1/LBin-gen/actions/workflows/ci.yml/badge.svg)](https://github.com/lalaio1/LBin-gen/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.9%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Zero deps](https://img.shields.io/badge/depend%C3%AAncias-0-brightgreen)](requirements.txt)
 [![Plataformas](https://img.shields.io/badge/plataformas-windows%20%7C%20linux%20%7C%20termux-blue)](#-instalação)
