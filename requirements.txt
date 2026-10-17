@@ -1,0 +1,8 @@
+# LBin Gen usa somente a biblioteca padrao do Python (3.9+).
+# Nao ha dependencias externas para instalar.
+#
+# Requisito unico:
+#   Python 3.9 ou superior — https://www.python.org/downloads/
+#
+# Termux:
+#   pkg install python

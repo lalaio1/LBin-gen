@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lbin-gen"
+version = "3.0.0"
+description = "Gerador de dados de teste para cartoes (Luhn-valido) com consulta de BIN, combos e exportacao em 8 formatos"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+authors = [{ name = "lalaio1", email = "" }]
+requires-python = ">=3.9"
+keywords = ["cartao", "credito", "teste", "luhn", "bin", "gerador", "qa", "sandbox"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Android",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Security",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/lalaio1/LBin-gen"
+Repository = "https://github.com/lalaio1/LBin-gen"
+Issues = "https://github.com/lalaio1/LBin-gen/issues"
+Telegram = "https://t.me/lalaio1"
+
+[project.scripts]
+lbin = "lbin.app.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["lbin*"]
+exclude = ["tests*", "docs*"]

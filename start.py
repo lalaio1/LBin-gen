@@ -1,75 +1,69 @@
-import subprocess
-import sys
+#!/usr/bin/env python3
+"""LBin Gen - launcher multiplataforma (Windows, Linux e Termux/Android)."""
+
+from __future__ import annotations
+
 import os
+import sys
+from pathlib import Path
 
-cor_vermelha = "\033[1;31m"
-cor_verde = "\033[1;32m"
-cor_amarela = "\033[1;33m"
-cor_azul = "\033[1;34m"
-cor_roxa = "\033[1;35m"
-cor_ciano = "\033[1;36m"
-cor_branca = "\033[1;37m"
-cor_reset = "\033[0m"
+MIN_PYTHON = (3, 9)
+ROOT = Path(__file__).resolve().parent
 
-def instalar_bibliotecas_necessarias():
-    bibliotecas = [
-        "requests",
-        "concurrent.futures",
-        "faker",
-        "luhn",
-        "colorama",
-        "platform",
-        "psutil",
-        "uuid",
-        "cryptography"
-    ]
-
-    print(f"\n{cor_amarela}Verificando bibliotecas...{cor_reset}")
-
-    for biblioteca in bibliotecas:
-        print(f"{cor_reset}[{cor_amarela}+{cor_reset}]{cor_amarela} Verificando {biblioteca}{cor_reset}")
-        try:
-            __import__(biblioteca)
-            print(f"{cor_reset}[{cor_azul}+{cor_reset}]{cor_verde} Verificada {biblioteca}{cor_reset}")
-        except ImportError:
-            print(f"{cor_reset}[{cor_vermelha}-{cor_reset}]{cor_vermelha} Instalando biblioteca {biblioteca}{cor_reset}")
-            subprocess.check_call([sys.executable, "-m", "pip", "install", biblioteca])
-
-def imprimir_banner():
-    banner = """
-.____  ____   ____              .__   _____         
-|    | \   \ /   / ____ _______ |__|_/ ____\___.__. 
-|    |  \   Y   /_/ __ \\_  __ \|  |\   __\<   |  |                       [ Discord // lalaio1]
-|    |___\     / \  ___/ |  | \/|  | |  |   \___  |     [ By // lalaio1 ]
-|_______ \\___/   \___  >|__|   |__| |__|   / ____| 
-        \/            \/                    \/      
-                                                      
+BANNER = r"""
+   _     ____  ___ _   _   ____ _____ _   _
+  | |   | __ )|_ _| \ | | / ___| ____| \ | |
+  | |   |  _ \ | ||  \| || |  _|  _| |  \| |
+  | |___| |_) || || |\  || |_| | |___| |\  |
+  |_____|____/|___|_| \_| \____|_____|_| \_|
 """
-    print(f"{cor_azul} {cor_roxa} {banner}{cor_reset}")
+
+
+def prepare_environment() -> None:
+    root = str(ROOT)
+    if root not in sys.path:
+        sys.path.insert(0, root)
+    if os.name == "nt":
+        try:
+            sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+            sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+            sys.stdin.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, ValueError):
+            pass
+        os.environ.setdefault("PYTHONUTF8", "1")
+
+
+def check_python() -> bool:
+    if sys.version_info >= MIN_PYTHON:
+        return True
+    sys.stdout.write(BANNER)
+    sys.stdout.write(
+        "\n  LBin Gen precisa do Python %d.%d ou superior.\n"
+        "  versao detectada: %s\n\n"
+        "  baixe em https://www.python.org/downloads/ (marque 'Add Python to PATH')\n"
+        "  no Termux: pkg install python\n\n"
+        % (MIN_PYTHON[0], MIN_PYTHON[1], ".".join(str(part) for part in sys.version_info[:3]))
+    )
+    return False
+
+
+def main() -> int:
+    prepare_environment()
+    if not check_python():
+        return 1
+    try:
+        from lbin.app.cli import main as cli_main
+    except ImportError as error:
+        sys.stdout.write(BANNER)
+        sys.stdout.write("\n  falha ao carregar o pacote lbin: %s\n" % error)
+        sys.stdout.write("  execute este arquivo de dentro do repositorio clonado.\n\n")
+        return 1
+    try:
+        return cli_main(sys.argv[1:] or ["menu"])
+    except KeyboardInterrupt:
+        sys.stdout.write("\n  sessao interrompida\n")
+        return 130
 
 
 if __name__ == "__main__":
-    os.system("clear" if os.name != "nt" else "cls")
-    imprimir_banner()
-    instalar_bibliotecas_necessarias()
-    os.system("clear" if os.name != "nt" else "cls")
-
-    print(f"{cor_reset}[{cor_amarela}+{cor_reset}]{cor_amarela} Executando login.py...{cor_reset}")
-    subprocess.run([sys.executable, "./scripts/login.py"])
-
-    print(f"{cor_reset}[{cor_amarela}+{cor_reset}]{cor_amarela} Executando LBin.py...{cor_reset}")
-    print(f"{cor_reset}[{cor_amarela}+{cor_reset}]{cor_amarela} Executando logs.pyy...{cor_reset}")
-    subprocess.run([sys.executable, "./scripts/logs.pyw"])
-    os.system("clear" if os.name != "nt" else "cls")
-    try:
-        subprocess.run([sys.executable, "./scripts/LBin.py"])
-    except KeyboardInterrupt:
-        os.system("clear" if os.name != "nt" else "cls")
-        print(f"\n{cor_vermelha}[{cor_vermelha}-{cor_reset}]{cor_vermelha} Interação do usuário interrompida. Pulando para o próximo script...{cor_reset}")
-
-    print(f"\n{cor_amarela}Aguarde enquanto o terminal é limpo...{cor_reset}")
-    os.system("clear" if os.name != "nt" else "cls")
-
-    print(f"\n{cor_reset}[{cor_amarela}+{cor_reset}]{cor_amarela} Executando LB7.py...{cor_reset}")
-    subprocess.run([sys.executable, "./scripts/LB7.py"])
-
+    sys.exit(main())
